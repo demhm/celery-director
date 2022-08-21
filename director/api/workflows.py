@@ -12,6 +12,7 @@ from director.exceptions import WorkflowNotFound
 from director.extensions import cel_workflows, schema
 from director.models.workflows import Workflow
 from director.utils import build_celery_schedule
+from celery.result import AsyncResult
 
 
 def _get_workflow(workflow_id):
@@ -120,3 +121,14 @@ def list_definitions():
             {"fullname": fullname, "project": project, "name": name, **definition}
         )
     return jsonify(workflow_definitions)
+
+
+@api_bp.route("/workflows/<workflow_id>/progress")
+@auth.login_required
+def get_workflow_progress(workflow_id):
+    result = AsyncResult(workflow_id)
+    response_data = {
+        'state': result.state,
+        'details': result.info,
+    }
+    return response_data
