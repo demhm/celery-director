@@ -1,7 +1,7 @@
 """Add users table
 
 Revision ID: 3f8466b16023
-Revises: 05cf96d6fcae
+Revises: 9d563aaa548b
 Create Date: 2020-07-15 16:45:02.209593
 
 """
@@ -12,7 +12,7 @@ from sqlalchemy_utils.types import UUIDType
 
 # revision identifiers, used by Alembic.
 revision = "3f8466b16023"
-down_revision = "05cf96d6fcae"
+down_revision = "9d563aaa548b"
 branch_labels = None
 depends_on = None
 
